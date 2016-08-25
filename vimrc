@@ -139,7 +139,6 @@ Plugin 'vim-airline/vim-airline'		"vim 状态栏
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'				"vim 查询
 Plugin 'tpope/vim-markdown'			"vim markdown支持
-Plugin 'suan/vim-instant-markdown'		"vim markdown实时预览
 Plugin 'scrooloose/syntastic'			"vim 语法检查
 Plugin 'majutsushi/tagbar'			"vim tagbar标签显示
 Plugin 'bronson/vim-trailing-whitespace'	"vim 空格自动修复
