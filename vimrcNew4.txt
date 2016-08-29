@@ -7,7 +7,7 @@
 set shortmess=atI               "启动不显示援助乌干达
 set nocompatible	            "关闭与vi的一致性兼容
 set t_Co=256                    "设置终端色彩
-"set noswapfile		            "禁止生成临时文件
+set noswapfile		            "禁止生成临时文件
 set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
 set nowrap                      "禁止折行"
