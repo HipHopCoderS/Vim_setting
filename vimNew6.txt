@@ -69,15 +69,7 @@ else
    set backup
 endif
 
-"当Gui启动的时候取消界面多余显示
-"if has("gui_running")
-"     set guioptions-=T
-"     set guioptions-=e
-"     set t_Co=256
-"     set guitablabel=%M\ %t
-"endif
-
-"if g:isGUI
+"当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
     set guioptions-=m
     set guioptions-=T
@@ -115,13 +107,14 @@ au BufNewFile,BufRead *.js,*.html,*.css
     \ set shiftwidth=2 |
 
 
-"""" >>>>>>> 编码方式设置
+"""" >>>>>>> 编码方式字体设置
 
 "参考: https://github.com/ryanoasis/nerd-fonts  图标字体设置
 let $LANG='en'                                 "设置为英文显示
 set langmenu=en
 set encoding=utf-8
-set termencoding=utf-8
+set termencoding=cp936
+set fileencoding=utf-8
 "set guifont=DroidSansMonoForPowerline\ Nerd\ Font\ 12	    "设置GuiVim字体 Linux
 "set guifont=DroidSansMonoForPowerline\ Nerd\ Font:H12	    "设置GuiVim字体 Mac
 set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936 	"设置编码格式
@@ -133,7 +126,15 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 if has("mac") || has("macunix")
     set gfn=DroidSansMonoForPowerline\ Nerd\ Font:H12
 elseif has("win16") || has("win32")
-    set gfn=DroidSansMonoForPowerline\ Nerd\ Font:h12
+    set gfn=DroidSansMonoForPowerline\ Nerd\ Font:h1    
+    source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题"
+    source $VIMRUNTIME/menu.vim
+    language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题"
+    if has("gui_running")
+        set t_Co=256  
+    else
+        set t_Co=8
+     endif    
 elseif has("gui_gtk2")
     set gfn=DroidSansMonoForPowerline\ Nerd\ Font\ 12
 elseif has("linux")
@@ -275,11 +276,7 @@ let g:ctrlp_map = '<c-p>'                       "Ctrlp超级搜索
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+
 
 
 if has("mac") || has("macunix") || has("unix") || has("Linux")
