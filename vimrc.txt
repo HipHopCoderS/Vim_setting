@@ -1,4 +1,4 @@
-
+﻿
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" <<<<<<< 基础设置  >>>>>>>
@@ -7,7 +7,7 @@
 set shortmess=atI               "启动不显示援助乌干达
 set nocompatible	            "关闭与vi的一致性兼容
 set t_Co=256                    "设置终端色彩
-"set noswapfile		            "禁止生成临时文件
+set noswapfile		            "禁止生成临时文件
 set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
 set nowrap                      "禁止折行"
@@ -36,7 +36,6 @@ set sts=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
-set fileformat=unix
 
 set autoread		            "文件修改后自动载入
 set autowrite		            "自动保存
@@ -70,15 +69,7 @@ else
    set backup
 endif
 
-"当Gui启动的时候取消界面多余显示
-"if has("gui_running")
-"     set guioptions-=T
-"     set guioptions-=e
-"     set t_Co=256
-"     set guitablabel=%M\ %t
-"endif
-
-"if g:isGUI
+"当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
     set guioptions-=m
     set guioptions-=T
@@ -116,33 +107,35 @@ au BufNewFile,BufRead *.js,*.html,*.css
     \ set shiftwidth=2 |
 
 
-"""" >>>>>>> 编码方式设置
+"""" >>>>>>> 编码方式字体设置
 
 "参考: https://github.com/ryanoasis/nerd-fonts  图标字体设置
 let $LANG='en'                                 "设置为英文显示
-set langmenu=en
-set encoding=utf-8
+set langmenu=en                                     
+set encoding=utf-8                              
 set termencoding=utf-8
-set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=utf-8
 "set guifont=DroidSansMonoForPowerline\ Nerd\ Font\ 12	    "设置GuiVim字体 Linux
 "set guifont=DroidSansMonoForPowerline\ Nerd\ Font:H12	    "设置GuiVim字体 Mac
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936 	"设置编码格式
+set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,latin-1,gbk,gb2312,cp936,chinese 	"设置编码格式
 
 let &termencoding=&encoding		                "设置编码方式
 let g:rehash256 = 1			                    "设置vim的背景接近终端
 
 
 if has("mac") || has("macunix")
-    set gfn=DroidSansMonoForPowerline\ Nerd\ Font:H12
-elseif has("win16") || has("win32")
     set gfn=DroidSansMonoForPowerline\ Nerd\ Font:h12
+elseif has("win16") || has("win32")
+    set gfn=DroidSansMonoForPowerline\ NF:h12
+    source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题"
+    source $VIMRUNTIME/menu.vim
+    language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题"
 elseif has("gui_gtk2")
     set gfn=DroidSansMonoForPowerline\ Nerd\ Font\ 12
 elseif has("linux")
     set gfn=DroidSansMonoForPowerline\ Nerd\ Font\ 12
 elseif has("unix")
-    set gfn=DroidSansMonoForPowerline\ Nerd\ Font:H12
+    set gfn=DroidSansMonoForPowerline\ Nerd\ Font:h12
 endif
 
 
@@ -278,26 +271,27 @@ let g:ctrlp_map = '<c-p>'                       "Ctrlp超级搜索
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux   Ctrl超级搜索
-"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
-let g:ctrlp_user_command = 'find %s -type f'    " MacOSX/Linux
-"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+
+if has("mac") || has("macunix") || has("unix") || has("Linux")
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " MacOSX/Linux   Ctrl超级搜索
+    let g:ctrlp_user_command = 'find %s -type f'            " MacOSX/Linux
+elseif has("win16") || has("win32")
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe             " Windows
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'      " Windows
+endif
+
+
 
 
 """" >>>>>>> AutoPairs 自动补全一对符号设置
-let g:AutoPairsFlyMode = 0                      "自动补全一对符号
+let g:AutoPairsFlyMode = 0                                  "自动补全一对符号
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 
 """" >>>>>>> Markdown 预览设置
-let g:instant_markdown_slow = 1                 "Markdown 实时预览
+let g:instant_markdown_slow = 1                             "Markdown 实时预览
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown	"markdown设置
 
 
@@ -323,12 +317,12 @@ let g:autopep8_disable_show_diff=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置包括vundle和初始化相关的runtime path
 
-if has("mac") || has("macunix")
+if has("mac") || has("macunix") || has("unix") || has("Linux")
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
-elseif has("win16") || has("win32") || has("unix") || has("Linux")
-    set rtp+=$VIM/vimfiles/bundle/vundle/  
-    call vundle#rc('$VIM/vimfiles/bundle/')  
+elseif has("win16") || has("win32")
+    set rtp+=$VIM/vimfiles/bundle/Vundle.Vim/
+    call vundle#begin('$VIM/vimfiles/bundle/')
 endif
 
 
