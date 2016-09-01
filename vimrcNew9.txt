@@ -187,11 +187,35 @@ colorscheme molokai             "vim主题
 """" >>>>>>> Airline 设置
 """"""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme="papercolor"		                "主题设置
-let g:airline_powerline_fonts = 1                       "显示powerline字体补丁
+let g:airline_powerline_fonts = 1                       "显示powerline字体补丁k
+let g:airline_extensions = ['tabline']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+
+
+
+if !exists ('g:airline_symbols')
+    let g:airline_symbols = {}
+
+" powerline symbols 加载一些特殊字符
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> Nerdtree  目录浏览设置
+""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F7> :TagbarToggle<C-R>                        "打开/关闭标签浏览
 
 
@@ -431,7 +455,7 @@ Plugin 'easymotion/vim-easymotion'      "vim 快速编辑辅助插件
 Plugin 'tomasr/molokai'				    "vim 主题
 Plugin 'vim-airline/vim-airline'		"vim 状态栏
 Plugin 'vim-airline/vim-airline-themes' "vim 状态栏主题
-Plugin 'bling/vim-bufferline'           "vim Buffer显示    
+Plugin 'bling/vim-bufferline'           "vim Buffer显示
 Plugin 'majutsushi/tagbar'			    "vim tagbar标签显示
 Plugin 'ryanoasis/vim-devicons'			"vim 图标美化
 "Plugin 'ryanoasis/nerd-fonts'			"vim 图标字体，比较大根据需要
