@@ -271,7 +271,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = '✗'			            "设置显示符号
 let g:syntastic_warning_symbol = '⚠'
 "let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
@@ -312,9 +312,10 @@ let g:ag_working_path_mode="r"                  "Ag搜索设置
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> UltiSnips 代码片段设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<leader><tab>"    "代码片段设置
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+let g:UltiSnipsExpandTrigger="<Tab>"    "代码片段设置
+let g:UltiSnipsListSnippets = '<C-Tab>'
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
 "let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
@@ -347,7 +348,7 @@ let g:pasta_paste_after_mapping = ',p'
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ctrlp 搜索设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<c-p>'                       "Ctrlp超级搜索
+let g:ctrlp_map = '<C-P>>'                       "Ctrlp超级搜索
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
