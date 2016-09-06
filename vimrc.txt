@@ -312,13 +312,13 @@ let g:ag_working_path_mode="r"                  "Ag搜索设置
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> UltiSnips 代码片段设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<Tab>"    "代码片段设置
-let g:UltiSnipsListSnippets = '<C-Tab>'
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsExpandTrigger="<leader><Tab>"    "代码片段设置
+let g:UltiSnipsListSnippets = '<leader><C-Tab>'
+let g:UltiSnipsJumpForwardTrigger="<leader><M-Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><S-Tab>"
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
-"let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -374,8 +374,7 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 """" >>>>>>> Markdown 预览设置
 """"""""""""""""""""""""""""""""""""""""""""
 let g:instant_markdown_slow = 1                             "Markdown 实时预览
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown	"markdown设置
-
+autocmd BufNewFile,BufRead *.{md,mkd,mkdn,mark*} set filetype=markdown  "markdown设置
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> indentLine 缩进指示线设置
@@ -403,6 +402,83 @@ nnoremap <F2> :GundoToggle<CR>
 """" >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""
 
+
+
+
+
+
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""" <<<<<<<  Hexo Blog 管理设置 >>>>>>>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"判断项目的路径
+if has("win32")
+    let g:hexoProjectPath=""
+else
+    let g:hexoProjectPath="/Users/Mr_Chen/git/My_Blog"
+endif
+
+
+fun! OpenHexoProjPath()
+    execute "cd " . g:hexoProjectPath
+endfun
+
+
+function! OpenHexoPost(...)
+    call OpenHexoProjPath()
+
+    let filename = "source/_posts/" . a:1 . ".md"
+    execute "e " . filename
+endfunction
+
+
+function! NewHexoPost(...)
+    call OpenHexoProjPath()
+
+    let filename = a:1
+    execute "!hexo new " . filename
+    call OpenHexoPost(a:1)
+endfunction
+
+
+function! HexoGenerate (...)
+    call OpenHexoProjPath()
+
+    execute "!hexo generate "
+endfunction
+
+
+function! HexoClean (...)
+    call OpenHexoProjPath()
+
+    execute "!hexo clean "
+endfunction
+
+function! HexoServer (...)
+    call OpenHexoProjPath()
+
+    execute "!hexo server "
+endfunction
+
+
+
+function! HexoDeploy (...)
+    call OpenHexoProjPath()
+    execute "!hexo deploy " 
+endfunction
+
+
+
+command -nargs=+ HexoOpen :call OpenHexoPost("<args>")
+
+command -nargs=+ HexoNew :call NewHexoPost("<args>")
+
+command  HexoGenerate :call HexoGenerate()
+
+command  HexoClean :call HexoClean()
+
+command  HexoDeploy  :call HexoDeploy()
 
 
 
