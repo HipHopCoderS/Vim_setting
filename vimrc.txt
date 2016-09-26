@@ -32,6 +32,7 @@ set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
 set nowrap                      "禁止折行"
 set history=50   	            "保存历史命令
+set nobackup                    "禁止备份文件"
 
 set hlsearch                    "高亮显示搜索结果
 set incsearch                   "边输入快速搜索
@@ -85,12 +86,6 @@ nnoremap <C-H> <C-W><C-H>
 filetype indent on              "根据文件自动缩进
 filetype off                    "关闭文件类型检测
 
-"覆盖一个文件时，保存备份
-if has("vms")
-   set nobackup
-else
-   set backup
-endif
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
@@ -348,7 +343,7 @@ let g:pasta_paste_after_mapping = ',p'
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ctrlp 搜索设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<C-P>>'                       "Ctrlp超级搜索
+let g:ctrlp_map = '<C-p>>'                       "Ctrlp超级搜索
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -396,6 +391,15 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """" >>>>>>> Gundo 撤销操作
 """"""""""""""""""""""""""""""""""""""""""""
 nnoremap <F2> :GundoToggle<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> AutoSAve  自动保存设置
+""""""""""""""""""""""""""""""""""""""""""""
+let g:auto_save = 1
+let g:auto_save_no_updatetime = 1
+let g:auto_save_in_insert_mode = 1
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -516,6 +520,7 @@ Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'yggdroot/indentline'            "vim 缩进指示线条
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 Plugin 'sjl/gundo.vim'                  "vim 撤销操作显示
+Plugin '907th/vim-auto-save'            "vim 自动保存
 
 Plugin 'tpope/vim-fugitive'			    "vim git插件
 Plugin 'shougo/vimshell.vim'			"vim 支持shell 命令
