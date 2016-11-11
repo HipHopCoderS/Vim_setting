@@ -396,9 +396,9 @@ nnoremap <F2> :GundoToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> AutoSAve  自动保存设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:auto_save = 1
-let g:auto_save_no_updatetime = 1
-let g:auto_save_in_insert_mode = 1
+"let g:auto_save = 1
+"let g:auto_save_no_updatetime = 1
+"let g:auto_save_in_insert_mode = 1
 
 
 
@@ -424,10 +424,9 @@ else
 endif
 
 
-fun! OpenHexoProjPath()
+function! OpenHexoProjPath(...)
     execute "cd " . g:hexoProjectPath
-endfun
-
+endfunction
 
 function! OpenHexoPost(...)
     call OpenHexoProjPath()
@@ -469,10 +468,12 @@ endfunction
 
 function! HexoDeploy (...)
     call OpenHexoProjPath()
-    execute "!hexo deploy " 
+    execute "!hexo deploy "
 endfunction
 
 
+
+command  HexoOpenProject :call OpenHexoProjPath()
 
 command -nargs=+ HexoOpen :call OpenHexoPost("<args>")
 
@@ -483,6 +484,10 @@ command  HexoGenerate :call HexoGenerate()
 command  HexoClean :call HexoClean()
 
 command  HexoDeploy  :call HexoDeploy()
+
+command  HexoServer :call  HexoServer()
+
+
 
 
 
@@ -520,7 +525,7 @@ Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'yggdroot/indentline'            "vim 缩进指示线条
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 Plugin 'sjl/gundo.vim'                  "vim 撤销操作显示
-Plugin '907th/vim-auto-save'            "vim 自动保存
+"Plugin '907th/vim-auto-save'            "vim 自动保存
 
 Plugin 'tpope/vim-fugitive'			    "vim git插件
 Plugin 'shougo/vimshell.vim'			"vim 支持shell 命令
