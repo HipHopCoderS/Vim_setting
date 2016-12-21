@@ -1,5 +1,5 @@
-﻿
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -8,10 +8,10 @@
 "<F2>       "撤销操作
 "<F3>       "关闭所有的折叠
 "<F4>       "展开所有的折叠
-"<F5>       "代码执行
+"<F5>       "Ag 搜索 
 "<F6>       "打开/关闭目录浏览
 "<F7>       "打开/关闭标签浏览
-"<F8>
+"<F8>       "切换粘贴模式
 "<F9>       "多光标编辑
 "<F10>
 "<F11>
@@ -21,7 +21,7 @@
 "
 "<Ctrl +  F11>      "Gui隐藏UI开关
 "
-""""""" <<<<<<< 基础设置  >>>>>>>
+"""""" <<<<<<< 基础设置  >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set helplang=cn                 "设置中文帮助文档
 set shortmess=atI               "启动不显示援助乌干达
@@ -31,7 +31,7 @@ set noswapfile		            "禁止生成临时文件
 set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
 set nowrap                      "禁止折行"
-set history=50   	            "保存历史命令
+"set history=50   	            "保存历史命令
 set nobackup                    "禁止备份文件"
 
 set hlsearch                    "高亮显示搜索结果
@@ -41,9 +41,11 @@ set matchtime=2                 "高亮显示时间"
 set ignorecase		            "搜索忽略大小写
 
 set mouse=a		                "允许鼠标滚
+set mouse=v                     "允许鼠标选中复制  
 set clipboard=unnamed	        "允许访问系统剪切板
 set backspace=2		            "允许退格键使用
-
+set scrolloff=7                 "滚动的时候 上下的间距为7
+set pastetoggle=<F8>
 
 set laststatus=2				"总是显示状态栏
 set showcmd		                "显示未完成的命令
@@ -83,7 +85,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-filetype indent on              "根据文件自动缩进
+filetype indent off              "根据文件自动缩进
 filetype off                    "关闭文件类型检测
 
 
@@ -143,18 +145,18 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 
 
 if has("mac") || has("macunix")
-    set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline:h12
+    set guifont=Liberation\ Mono\ for\ Powerline:h12
 elseif has("win32") || has("win64")
-    set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline:h12
+    set guifont=Liberation\ Mono\ for\ Powerline:h12
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline\ 12
+    set guifont=Liberation\ Mono\ for\ Powerline\ 12
 elseif has("linux")
-    set guifont= Droid\ Sans\ Mono\ Dotted\ for\ Powerline\ 12
+    set guifont= Liberation\ Mono\ for\ Powerline\ 12
 elseif has("unix")
-    set guifont=Droid\ Sans\ Mono\ Dotted\ for\ Powerline:h12
+    set guifont=Liberation\ Mono\ for\ Powerline:h12
 endif
 
 
@@ -170,9 +172,6 @@ colorscheme molokai             "vim主题
 
 
 
-
-
-
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" <<<<<<<  插件设置 >>>>>>>
@@ -182,31 +181,14 @@ colorscheme molokai             "vim主题
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="papercolor"		                "主题设置
+let g:airline_theme="molokai"		                "主题设置
 let g:airline_powerline_fonts = 1                       "显示powerline字体补丁
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#close_symbol = 'X'
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#tabs_label = 't'
-
-let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'
-let g:airline#extensions#quickfix#location_text = 'Location'
-let g:airline#extensions#tagbar#enabled = 1
-
-
-let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#ycm#error_symbol = 'E:'
-let g:airline#extensions#ycm#warning_symbol = 'W:'
 
 let g:airline#extensions#syntastic#enabled = 1
 
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
 
 let g:airline#extensions#tabline#buffer_idx_mode = 1    "显示Buffer的列标,快捷键切换bufflist"
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -222,8 +204,6 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Tagbar  设置
 """"""""""""""""""""""""""""""""""""""""""""
@@ -233,8 +213,8 @@ nnoremap <F7> :TagbarToggle<C-R>                        "打开/关闭标签浏�
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Nerdtree  目录浏览设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:nerdtree_tabs_open_on_console_startup = 1	        "vim开启nerdtree
-let g:nerdtree_tabs_open_on_gui_startup = 1				"GuiVim开启nerdtree
+let g:nerdtree_tabs_open_on_console_startup = 0	        "vim开启nerdtree
+let g:nerdtree_tabs_open_on_gui_startup = 0				"GuiVim开启nerdtree
 let g:nerdtree_tabs_no_startup_for_diff = 1				"当diff启动时不启动nerdtree
 let g:nerdtree_tabs_smart_startup_focus = 2				"当启动时编辑区域自动获取焦点
 let g:nerdtree_tabs_autofind = 1			    		"自动选择当前选中的文件
@@ -245,47 +225,6 @@ let NERDTreeWinSize=27                          		"设置NerdTree 窗口宽度
 let NERDTreeMinimalUI=1                                 "隐藏书签和help文档
 let NERDTreeAutoDeleteBuffer=1                          "删除文件时候，删除Buffer
 nnoremap <F6> :NERDTreeToggle<C-R>                      "打开/关闭目录浏览
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Nerd Commenter  设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDSpaceDelims = 1                               "注释之后带空格
-let g:NERDCompactSexyComs = 1				            "紧凑注释
-let g:NERDDefaultAlign = 'left'                         "注释默认左对齐
-let g:NERDCustomDelimiters = { 'python ': { 'left': '# '}  }
-let g:NERDAltDelims_python= 1                           "默认使用python的注释配置
-let g:NERDTrimTrailingWhitespace = 1                    "自动修复行末尾的空格
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Syntastic 语法检查设置
-""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#	                        "语法检查
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = '✗'			            "设置显示符号
-let g:syntastic_warning_symbol = '⚠'
-"let g:syntastic_python_checker="flake8,pyflakes,pep8,pylint"
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args='-ignore=E401 '
-let g:syntastic_markdown_checkers = ['mdl']
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Ycm  代码自动补全设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_python_binary_path = '/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
-let g:ycm_autoclose_preview_window_after_completion=1   "关闭补全窗口的出现
-let g:ycm_min_num_of_chars_for_completion=1             "从第一个字符就开始匹配了
-let g:ycm_collect_identifiers_from_tags_files=1         "开启标签引擎
-let g:ycm_cache_omnifunc=0                              "禁止匹配缓存
-let g:ycm_seed_identifiers_with_syntax=1                "语法关键字补全
-
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>      "Ycm跳转到定义的快捷键
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -298,22 +237,47 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> Ctrlp 搜索设置
+""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<C-p>'                       "Ctrlp超级搜索
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+if has("mac") || has("macunix") || has("unix") || has("Linux")
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " MacOSX/Linux   Ctrl超级搜索
+    let g:ctrlp_user_command = 'find %s -type f'            " MacOSX/Linux
+elseif has("win32") || has("win64")
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe             " Windows
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'      " Windows
+endif
+
+
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ag 搜索定位设置
 """"""""""""""""""""""""""""""""""""""""""""
 let g:ag_working_path_mode="r"                  "Ag搜索设置
+nnoremap <F5> :Ag <C-R>                          
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> UltiSnips 代码片段设置
+"""" >>>>>>> Gundo 撤销操作
 """"""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<leader><Tab>"    "代码片段设置
-let g:UltiSnipsListSnippets = '<leader><C-Tab>'
-let g:UltiSnipsJumpForwardTrigger="<leader><M-Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><S-Tab>"
-let g:UltiSnipsUsePythonVersion = 2
-let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
-let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
+nnoremap <F2> :GundoToggle<C-R>
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> indentLine 缩进指示线设置
+""""""""""""""""""""""""""""""""""""""""""""
+"缩进指示线"
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -332,31 +296,6 @@ set foldenable                                  "Vim启动,关闭代码折叠fol
 set foldlevel=99
 
 
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> vim-pasta 粘贴自动格式化设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:pasta_enabled_filetypes = ['python', 'javascript', 'css', 'sh']   "粘贴后格式自动排版
-let g:pasta_paste_before_mapping = ',P'
-let g:pasta_paste_after_mapping = ',p'
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Ctrlp 搜索设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<C-p>>'                       "Ctrlp超级搜索
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-
-if has("mac") || has("macunix") || has("unix") || has("Linux")
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip                " MacOSX/Linux   Ctrl超级搜索
-    let g:ctrlp_user_command = 'find %s -type f'            " MacOSX/Linux
-elseif has("win32") || has("win64")
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe             " Windows
-    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'      " Windows
-endif
-
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> AutoPairs 自动补全一对符号设置
@@ -365,127 +304,31 @@ let g:AutoPairsFlyMode = 0                                  "自动补全一对�
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Markdown 预览设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:instant_markdown_slow = 1                             "Markdown 实时预览
-autocmd BufNewFile,BufRead *.{md,mkd,mkdn,mark*} set filetype=markdown  "markdown设置
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> indentLine 缩进指示线设置
+"""" >>>>>>> Ycm  代码自动补全设置
 """"""""""""""""""""""""""""""""""""""""""""
-"缩进指示线"
-let g:indentLine_char='┆'
-let g:indentLine_enabled = 1
+let g:ycm_python_binary_path = '/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+let g:ycm_autoclose_preview_window_after_completion=1   "关闭补全窗口的出现
+let g:ycm_min_num_of_chars_for_completion=1             "从第一个字符就开始匹配了
+let g:ycm_collect_identifiers_from_tags_files=1         "开启标签引擎
+let g:ycm_cache_omnifunc=0                              "禁止匹配缓存
+let g:ycm_seed_identifiers_with_syntax=1                "语法关键字补全
 
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> QuickRun 执行脚本插件
-""""""""""""""""""""""""""""""""""""""""""""
-"map <leader>r :QuickRun<CR>
-noremap <F5> :QuickRun<CR>
-inoremap <F5> <Esc>:QuickRun<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Gundo 撤销操作
-""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <F2> :GundoToggle<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> AutoSAve  自动保存设置
-""""""""""""""""""""""""""""""""""""""""""""
-"let g:auto_save = 1
-"let g:auto_save_no_updatetime = 1
-"let g:auto_save_in_insert_mode = 1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>      "Ycm跳转到定义的快捷键
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>>
+"""" >>>>>>> UltiSnips 代码片段设置
 """"""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""" <<<<<<<  Hexo Blog 管理设置 >>>>>>>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"判断项目的路径
-if has("win32")
-    let g:hexoProjectPath=""
-else
-    let g:hexoProjectPath="/Users/Mr_Chen/git/My_Blog"
-endif
-
-
-function! OpenHexoProjPath(...)
-    execute "cd " . g:hexoProjectPath
-endfunction
-
-function! OpenHexoPost(...)
-    call OpenHexoProjPath()
-
-    let filename = "source/_posts/" . a:1 . ".md"
-    execute "e " . filename
-endfunction
-
-
-function! NewHexoPost(...)
-    call OpenHexoProjPath()
-
-    let filename = a:1
-    execute "!hexo new " . filename
-    call OpenHexoPost(a:1)
-endfunction
-
-
-function! HexoGenerate (...)
-    call OpenHexoProjPath()
-
-    execute "!hexo generate "
-endfunction
-
-
-function! HexoClean (...)
-    call OpenHexoProjPath()
-
-    execute "!hexo clean "
-endfunction
-
-function! HexoServer (...)
-    call OpenHexoProjPath()
-
-    execute "!hexo server "
-endfunction
-
-
-
-function! HexoDeploy (...)
-    call OpenHexoProjPath()
-    execute "!hexo deploy "
-endfunction
-
-
-
-command  HexoOpenProject :call OpenHexoProjPath()
-
-command -nargs=+ HexoOpen :call OpenHexoPost("<args>")
-
-command -nargs=+ HexoNew :call NewHexoPost("<args>")
-
-command  HexoGenerate :call HexoGenerate()
-
-command  HexoClean :call HexoClean()
-
-command  HexoDeploy  :call HexoDeploy()
-
-command  HexoServer :call  HexoServer()
+let g:UltiSnipsExpandTrigger="<leader><Tab>"    "代码片段设置
+let g:UltiSnipsListSnippets = '<leader><C-Tab>'
+let g:UltiSnipsJumpForwardTrigger="<leader><M-Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><S-Tab>"
+let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
 
 
@@ -508,38 +351,22 @@ endif
 
 " 让vundle管理插件版本,必须
 Plugin 'VundleVim/Vundle.vim'			"vim 插件管理
-Plugin 'scrooloose/nerdtree'			"vim 文件目录浏览
-Plugin 'jistr/vim-nerdtree-tabs'		"vim 文件目录浏览插件
-Plugin 'majutsushi/tagbar'			    "vim tagbar标签显示
-
-Plugin 'scrooloose/nerdcommenter'		"vim 注释功能
-Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
-Plugin 'kien/ctrlp.vim'                 "vim 超级搜索功能
-Plugin 'rking/ag.vim'				    "vim ag搜索查询定位
-Plugin 'tpope/vim-surround'			    "vim 编辑辅助符号标签快速修改
-Plugin 'bronson/vim-trailing-whitespace'    "vim 空格自动修复
-Plugin 'valloric/youcompleteme'			"vim 自动补全提示
-Plugin 'scrooloose/syntastic'			"vim 语法检查
-Plugin 'sickill/vim-pasta'              "vim 粘贴代码自动格式
-Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
-Plugin 'yggdroot/indentline'            "vim 缩进指示线条
-Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
-Plugin 'sjl/gundo.vim'                  "vim 撤销操作显示
-"Plugin '907th/vim-auto-save'            "vim 自动保存
-
-Plugin 'tpope/vim-fugitive'			    "vim git插件
-Plugin 'shougo/vimshell.vim'			"vim 支持shell 命令
-Plugin 'shougo/vimproc.vim'			    "vim shell插件
-Plugin 'terryma/vim-multiple-cursors'	"vim 多光标编辑
-Plugin 'sirver/ultisnips'			    "vim 代码模块片段
-Plugin 'honza/vim-snippets'			    "~
-Plugin 'tpope/vim-markdown'			    "vim markdown支持
-Plugin 'suan/vim-instant-markdown'      "vim markdown实时预览
-
 Plugin 'tomasr/molokai'				    "vim 主题
 Plugin 'vim-airline/vim-airline'		"vim 状态栏
 Plugin 'vim-airline/vim-airline-themes' "vim 状态栏主题
-
+Plugin 'majutsushi/tagbar'			    "vim tagbar标签显示
+Plugin 'scrooloose/nerdtree'			"vim 文件目录浏览
+Plugin 'terryma/vim-multiple-cursors'	"vim 多光标编辑
+Plugin 'kien/ctrlp.vim'                 "vim 超级搜索功能
+Plugin 'rking/ag.vim'				    "vim ag搜索查询定位
+Plugin 'sjl/gundo.vim'                  "vim 撤销操作显示
+Plugin 'tpope/vim-fugitive'			    "vim git插件
+Plugin 'yggdroot/indentline'            "vim 缩进指示线条
+Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
+Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
+Plugin 'valloric/youcompleteme'			"vim 自动补全提示
+Plugin 'sirver/ultisnips'			    "vim 代码模块片段
+Plugin 'honza/vim-snippets'			    "~
 
 call vundle#end()
 filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
