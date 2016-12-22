@@ -24,8 +24,6 @@
 """""" <<<<<<< 基础设置  >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set helplang=cn                 "设置中文帮助文档
-"set shortmess=atl               "启动不显示援助乌干达
-set shortmess=atI
 set nocompatible	            "关闭与vi的一致性兼容
 set t_Co=256                    "设置终端色彩
 set noswapfile		            "禁止生成临时文件
@@ -148,7 +146,7 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 if has("mac") || has("macunix")
     set guifont=Liberation\ Mono\ for\ Powerline:h12
 elseif has("win32") || has("win64")
-    set guifont=Liberation\ Mono\ for\ Powerline:h12
+    set guifont=Droid\ Sans\ Mono\ for\ Powerline:h8
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
@@ -182,7 +180,7 @@ colorscheme molokai             "vim主题
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="molokai"		                "主题设置
+let g:airline_theme="luna"		                "主题设置
 let g:airline_powerline_fonts = 1                       "显示powerline字体补丁
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#close_symbol = 'X'
@@ -203,6 +201,19 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
+
+if !exists('g:airline_symbols')
+   let g:airline_symbols = {}
+endif
+
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -332,7 +343,6 @@ let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件�
 let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> QuickRun 执行脚本插件
 """"""""""""""""""""""""""""""""""""""""""""
@@ -352,6 +362,10 @@ inoremap <F5> <Esc>:QuickRun<CR>
 if has("mac") || has("macunix") || has("unix") || has("Linux")
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
+	Plugin 'valloric/youcompleteme'			"vim 自动补全提示
+	Plugin 'sirver/ultisnips'			    "vim 代码模块片段
+	Plugin 'honza/vim-snippets'			    "~
+
 elseif has("win32") || has("win64")
     set rtp+=$VIM/vimfiles/bundle/Vundle.Vim/
     call vundle#begin('$VIM/vimfiles/bundle/')
@@ -373,9 +387,6 @@ Plugin 'tpope/vim-fugitive'			    "vim git插件
 Plugin 'yggdroot/indentline'            "vim 缩进指示线条
 Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
 Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
-Plugin 'valloric/youcompleteme'			"vim 自动补全提示
-Plugin 'sirver/ultisnips'			    "vim 代码模块片段
-Plugin 'honza/vim-snippets'			    "~
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 
 
