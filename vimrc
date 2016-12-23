@@ -144,9 +144,9 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 
 
 if has("mac") || has("macunix")
-    set guifont=Liberation\ Mono\ for\ Powerline:h12
+    set guifont=LiberationMonoPowerline\ NF:h12
 elseif has("win32") || has("win64")
-    set guifont=Droid\ Sans\ Mono\ for\ Powerline:h8
+    set guifont=DroidSansMonoForPowerline\ NF:h8
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
@@ -201,18 +201,6 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
-
-if !exists('g:airline_symbols')
-   let g:airline_symbols = {}
-endif
-
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = ''
 
 
 
@@ -388,7 +376,7 @@ Plugin 'yggdroot/indentline'            "vim 缩进指示线条
 Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
 Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
-
+Plugin 'ryanoasis/vim-devicons'         "vim icon
 
 call vundle#end()
 filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
