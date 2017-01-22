@@ -1,1 +1,4 @@
-# Vim 配置文件，适配windows,OSX,lunix
+# Vim 配置文件，适配windows,OSX,Linux
+
+
+
