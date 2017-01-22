@@ -67,7 +67,7 @@ set autoread		            "文件修改后自动载入
 set autowrite		            "自动保存
 set autochdir 		            "打开文件自动切换到目录下  nerdtree
 
-set splitbelow		            "允许分屏 sv,sp
+set splitbelow		            "允许分屏 vs,sp
 set splitright
 
 set magic                       "设置magic  正则规则
@@ -340,8 +340,13 @@ inoremap <F5> <Esc>:QuickRun<CR>
 
 
 
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> QuickRun 执行脚本插件
+""""""""""""""""""""""""""""""""""""""""""""
+let g:hexoProjectPath="你的Hexo 博客地址"
 
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" <<<<<<<  插件管理 >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -377,6 +382,7 @@ Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
 Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 Plugin 'ryanoasis/vim-devicons'         "vim icon
+Plugin 'hiphopcoders/hexo.vim'
 
 call vundle#end()
 filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
