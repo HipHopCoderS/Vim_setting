@@ -39,8 +39,8 @@ set showmatch                   "高亮匹配括号
 set matchtime=2                 "高亮显示时间"
 set ignorecase		            "搜索忽略大小写
 
-set mouse=a		                "允许鼠标滚
-set mouse=v                     "允许鼠标选中复制  
+set mouse=a		                "允许所有模式鼠标
+"set mouse=v                     "允许Visual mode 鼠标使用  
 set clipboard=unnamed	        "允许访问系统剪切板
 set backspace=2		            "允许退格键使用
 set scrolloff=7                 "滚动的时候 上下的间距为7
@@ -343,7 +343,7 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> QuickRun 执行脚本插件
 """"""""""""""""""""""""""""""""""""""""""""
-let g:hexoProjectPath="你的Hexo 博客地址"
+let g:hexoProjectPath="/Users/Mr_Chen/git/My_Blog/"
 
 
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
