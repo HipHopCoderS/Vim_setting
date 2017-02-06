@@ -341,9 +341,10 @@ inoremap <F5> <Esc>:QuickRun<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> QuickRun 执行脚本插件
+"""" >>>>>>> Hexo vim 插件 
 """"""""""""""""""""""""""""""""""""""""""""
-let g:hexoProjectPath="/Users/Mr_Chen/git/My_Blog/"
+"输入你的本地blog文件夹地址
+let g:hexoProjectPath="You Blog Path"
 
 
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
