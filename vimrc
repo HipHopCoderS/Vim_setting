@@ -18,7 +18,7 @@
 "<F12>
 "
 "<space>    "折叠代码
-"
+
 "<Ctrl +  F11>      "Gui隐藏UI开关
 "
 """""" <<<<<<< 基础设置  >>>>>>>
@@ -154,8 +154,9 @@ elseif has("gui_gtk2")
     set guifont=Liberation\ Mono\ for\ Powerline\ 12
 elseif has("linux")
     set guifont= Liberation\ Mono\ for\ Powerline\ 12
-elseif has("unix")
+elseif has("macunix")
     set guifont=Liberation\ Mono\ for\ Powerline:h12
+    "set guifont=Liberation\ Mono\ for\ Powerline:h12
 endif
 
 
@@ -308,10 +309,10 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ycm  代码自动补全设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:ycm_python_binary_path = '/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+let g:ycm_python_binary_path = '/usr/local/Cellar/python3/3.6.1/Frameworks/Python.framework/Versions/3.6/bin/python3'
 let g:ycm_autoclose_preview_window_after_completion=1   "关闭补全窗口的出现
 let g:ycm_min_num_of_chars_for_completion=1             "从第一个字符就开始匹配了
-let g:ycm_collect_identifiers_from_tags_files=1         "开启标签引擎
+let g:ycm_collect_identifiers_from_tags_files=0         "开启标签引擎
 let g:ycm_cache_omnifunc=0                              "禁止匹配缓存
 let g:ycm_seed_identifiers_with_syntax=1                "语法关键字补全
 
@@ -328,7 +329,7 @@ let g:UltiSnipsJumpForwardTrigger="<leader><M-Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><S-Tab>"
 let g:UltiSnipsUsePythonVersion = 2
 let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
-let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
+let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -345,6 +346,17 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
 let g:hexoProjectPath="You Blog Path"
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> 前端  JavaScript  插件 
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+
+let g:javascript_plugin_jsdoc = 1          "语法高亮
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
 
 
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -384,6 +396,8 @@ Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 Plugin 'ryanoasis/vim-devicons'         "vim icon
 Plugin 'hiphopcoders/hexo.vim'
+Plugin 'pangloss/vim-javascript'        "vim javascript 
+Plugin 'marijnh/tern_for_vim'           "vim javascript plugin
 
 call vundle#end()
 filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
