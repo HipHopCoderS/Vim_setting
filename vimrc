@@ -144,19 +144,18 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 
 
 if has("mac") || has("macunix")
-    set guifont=LiberationMonoPowerline\ NF:h12
+    set guifont=LiterationMonoPowerline\ NF:h12
 elseif has("win32") || has("win64")
     set guifont=DroidSansMonoForPowerline\ NF:h8
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=Liberation\ Mono\ for\ Powerline\ 12
+    set guifont=Literation\ Mono\ for\ Powerline\ 12
 elseif has("linux")
-    set guifont= Liberation\ Mono\ for\ Powerline\ 12
+    set guifont= Literation\ Mono\ for\ Powerline\ 12
 elseif has("macunix")
-    set guifont=Liberation\ Mono\ for\ Powerline:h12
-    "set guifont=Liberation\ Mono\ for\ Powerline:h12
+    set guifont=Literation\ Mono\ for\ Powerline:h12
 endif
 
 
@@ -181,7 +180,7 @@ colorscheme molokai             "vim主题
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="luna"		                "主题设置
+let g:airline_theme="molokai"		                "主题设置
 let g:airline_powerline_fonts = 1                       "显示powerline字体补丁
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#close_symbol = 'X'
