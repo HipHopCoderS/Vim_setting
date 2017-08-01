@@ -1,5 +1,5 @@
 "
-"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -13,7 +13,7 @@
 "<F7>       "打开/关闭标签浏览
 "<F8>       "切换粘贴模式
 "<F9>       "多光标编辑
-"<F10>      "Ag 搜索 
+"<F10>      "Ag 搜索
 "<F11>
 "<F12>
 "
@@ -25,8 +25,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set helplang=cn                 "设置中文帮助文档
 set nocompatible	            "关闭与vi的一致性兼容
-set t_Co=256                    "设置终端色彩
-set noswapfile		            "禁止生成临时文件
+"set t_Co=256                    "设置终端色彩
+set noswapfile		            "禁止生临时文件
 set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
 set nowrap                      "禁止折行"
@@ -40,7 +40,7 @@ set matchtime=2                 "高亮显示时间"
 set ignorecase		            "搜索忽略大小写
 
 set mouse=a		                "允许所有模式鼠标
-"set mouse=v                     "允许Visual mode 鼠标使用  
+"set mouse=v                     "允许Visual mode 鼠标使用
 set clipboard=unnamed	        "允许访问系统剪切板
 set backspace=2		            "允许退格键使用
 set scrolloff=7                 "滚动的时候 上下的间距为7
@@ -90,6 +90,12 @@ filetype off                    "关闭文件类型检测
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
+
+    set ambiwidth=double                                        "设置中文显示双字节的宽度
+    let g:airline_right_sep = '⮂'                               "Gui 设置显示的箭头符号
+    let g:airline_right_alt_sep = '⮃'
+
+
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
@@ -131,7 +137,6 @@ au BufNewFile,BufRead *.js,*.html,*.css
 """"""""""""""""""""""""""""""""""""""""""""
 "参考: https://github.com/ryanoasis/nerd-fonts  图标字体设置
 
-"set ambiwidth=double                                        "设置中文显示双字节的宽度
 let $LANG='en'                                              "设置为英文显示
 set langmenu=en
 set encoding=utf-8
@@ -144,18 +149,18 @@ let g:rehash256 = 1			                    "设置vim的背景接近终端
 
 
 if has("mac") || has("macunix")
-    set guifont=LiterationMonoPowerline\ NF:h12
+    set guifont=LiterationMonoPowerline\ NF:h13
 elseif has("win32") || has("win64")
     set guifont=DroidSansMonoForPowerline\ NF:h8
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=Literation\ Mono\ for\ Powerline\ 12
+    set guifont=Literation\ Mono\ for\ Powerline\ 13
 elseif has("linux")
-    set guifont= Literation\ Mono\ for\ Powerline\ 12
+    set guifont= Literation\ Mono\ for\ Powerline\ 13
 elseif has("macunix")
-    set guifont=Literation\ Mono\ for\ Powerline:h12
+    set guifont=Literation\ Mono\ for\ Powerline:h13
 endif
 
 
@@ -165,9 +170,15 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""
 let python_highlight_all=1
 
+
 syntax enable                   "允许自定义语法
 syntax on                       "开启语法高亮
-colorscheme molokai             "vim主题
+"let g:solarized_termcolors=256  "终端显示不支持256 色彩值设置
+let g:solarized_termtrans=0
+let g:solarized_degrade =  0
+set background=dark             "vim主题
+colorscheme solarized
+
 
 
 
@@ -179,17 +190,34 @@ colorscheme molokai             "vim主题
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
-""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme="molokai"		                "主题设置
-let g:airline_powerline_fonts = 1                       "显示powerline字体补丁
-let g:airline#extensions#tabline#enabled = 1
+"""""""""""""""Plugin 'dikiaap/minimalist'"""""""""""""""""""""""""""""
+
+let g:airline_theme="solarized"		                        "airline 主题设置
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1                               "airline 显示powerline字体补丁
+
+let g:airline#extensions#tabline#enabled = 1                    "airline tabline 显示配置
 let g:airline#extensions#tabline#close_symbol = 'X'
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
 
-let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1                 "airline Bufferline  显示配置
 
+let g:airline#extensions#whitespace#enabled = 0                 "airline whitespace check 显示
 
-let g:airline#extensions#tabline#buffer_idx_mode = 1    "显示Buffer的列标,快捷键切换bufflist"
+let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'    "airline  quickfix  显示
+let g:airline#extensions#quickfix#location_text = 'Location'
+
+let g:airline#extensions#syntastic#enabled = 1                  "airline  语法检查
+
+let g:airline#extensions#tagbar#enabled = 1                     "airline tagbar
+
+let g:airline#extensions#vimagit#enabled = 1                    "airline vimgit
+
+let g:airline#extensions#ycm#enabled = 1                        "airline vimgit
+let g:airline#extensions#ycm#error_symbol = 'E:'
+let g:airline#extensions#ycm#warning_symbol = 'W:'
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1    "显示Buffer的列标,快捷键切换bufflist
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -203,11 +231,10 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Tagbar  设置
 """"""""""""""""""""""""""""""""""""""""""""
-nnoremap <F7> :TagbarToggle<C-R>                        "打开/关闭标签浏览
+nnoremap <F7> :TagbarToggle<CR>                        "打开/关闭标签浏览
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -224,7 +251,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$']					"隐藏pyc文件
 let NERDTreeWinSize=27                          		"设置NerdTree 窗口宽度
 let NERDTreeMinimalUI=1                                 "隐藏书签和help文档
 let NERDTreeAutoDeleteBuffer=1                          "删除文件时候，删除Buffer
-nnoremap <F6> :NERDTreeToggle<C-R>                      "打开/关闭目录浏览
+nnoremap <F6> :NERDTreeToggle<CR>                      "打开/关闭目录浏览
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -260,14 +287,14 @@ endif
 """" >>>>>>> Ag 搜索定位设置
 """"""""""""""""""""""""""""""""""""""""""""
 let g:ag_working_path_mode="r"                  "Ag搜索设置
-nnoremap <F10> :Ag <C-R>                          
+nnoremap <F10> :Ag <CR>
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Gundo 撤销操作
 """"""""""""""""""""""""""""""""""""""""""""
-nnoremap <F2> :GundoToggle<C-R>
+nnoremap <F2> :GundoToggle<CR>
 
 
 
@@ -341,20 +368,52 @@ inoremap <F5> <Esc>:QuickRun<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> Hexo vim 插件 
+"""" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-let g:hexoProjectPath="You Blog Path"
+"let g:hexoProjectPath="You Blog Path"
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> 前端  JavaScript  插件 
+"""" >>>>>>> Markdown  vim 插件
+""""""""""""""""""""""""""""""""""""""""""""
+
+" 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
+if has("mac") || has("macunix")
+    let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+elseif
+    let g:mkdp_path_to_chrome = "google-chrome"
+endif
+
+
+" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开 markdown 文件的时候打开一次
+let g:mkdp_auto_start = 1
+
+
+" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预览窗口
+let g:mkdp_auto_open = 1
+
+" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不自动关闭预览窗口
+let g:mkdp_auto_close = 1
+
+" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时更新预览
+let g:mkdp_refresh_slow = 0
+
+" 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown文件可以使用改命令
+let g:mkdp_command_for_global = 0
+
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> 前端  JavaScript  插件
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 
 let g:javascript_plugin_jsdoc = 1          "语法高亮
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
+set foldmethod=syntax
 
 
 
@@ -363,11 +422,10 @@ let g:javascript_plugin_flow = 1
 """"""" <<<<<<<  插件管理 >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置包括vundle和初始化相关的runtime path
-
 if has("mac") || has("macunix") || has("unix") || has("Linux")
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
-	Plugin 'valloric/youcompleteme'			"vim 自动补全提示
+	Plugin 'valloric/youcompleteme'		"vim 自动补全提示
 	Plugin 'sirver/ultisnips'			    "vim 代码模块片段
 	Plugin 'honza/vim-snippets'			    "~
 
@@ -377,11 +435,12 @@ elseif has("win32") || has("win64")
 endif
 
 
-" 让vundle管理插件版本,必须
+" 让vundle管理插件版本
 Plugin 'VundleVim/Vundle.vim'			"vim 插件管理
-Plugin 'tomasr/molokai'				    "vim 主题
+Plugin 'altercation/vim-colors-solarized' "vim主题
 Plugin 'vim-airline/vim-airline'		"vim 状态栏
 Plugin 'vim-airline/vim-airline-themes' "vim 状态栏主题
+Plugin 'duff/vim-trailing-whitespace'   "vim 空格空行修复
 Plugin 'majutsushi/tagbar'			    "vim tagbar标签显示
 Plugin 'scrooloose/nerdtree'			"vim 文件目录浏览
 Plugin 'terryma/vim-multiple-cursors'	"vim 多光标编辑
@@ -395,8 +454,14 @@ Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
 Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
 Plugin 'ryanoasis/vim-devicons'         "vim icon
 Plugin 'hiphopcoders/hexo.vim'
-Plugin 'pangloss/vim-javascript'        "vim javascript 
+Plugin 'godlygeek/tabular'              "vim markdown
+Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/mathjax-support-for-mkdp'  "vim 实时预览
+Plugin 'iamcco/markdown-preview.vim'
+Plugin 'pangloss/vim-javascript'        "vim javascript
 Plugin 'marijnh/tern_for_vim'           "vim javascript plugin
 
 call vundle#end()
 filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
+
+
