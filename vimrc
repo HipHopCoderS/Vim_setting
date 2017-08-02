@@ -25,7 +25,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set helplang=cn                 "设置中文帮助文档
 set nocompatible	            "关闭与vi的一致性兼容
-"set t_Co=256                    "设置终端色彩
+set hidden
+set t_Co=256                    "设置终端色彩
 set noswapfile		            "禁止生临时文件
 set wildmenu                    "vim命令输入时提示菜单增强模全
 "set wildmode=list:longest       "vim命令行增强模式list
@@ -63,14 +64,14 @@ set fileformats=unix,dos,mac    "使用unix 作为标准的文件类型"
 
 
 set autoindent
-set autoread		            "文件修改后自动载入
+set autoread		            "文件外部修改后vim自动载入
 set autowrite		            "自动保存
 set autochdir 		            "打开文件自动切换到目录下  nerdtree
 
 set splitbelow		            "允许分屏 vs,sp
 set splitright
 
-set magic                       "设置magic  正则规则
+set magic                       "设置magic  正则表达式
 
 set noerrorbells                "禁止vim的的错误声音等"
 set novisualbell
@@ -84,8 +85,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-filetype indent off              "根据文件自动缩进
+
 filetype off                    "关闭文件类型检测
+filetype indent on           	"根据文件自动缩进
+filetype plugin on               "允许插件
+filetype plugin indent on       "启动自动补全 ycm需要设置
 
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
@@ -94,7 +98,6 @@ if has("gui_running")
     set ambiwidth=double                                        "设置中文显示双字节的宽度
     let g:airline_right_sep = '⮂'                               "Gui 设置显示的箭头符号
     let g:airline_right_alt_sep = '⮃'
-
 
     set guioptions-=m
     set guioptions-=T
@@ -130,6 +133,13 @@ au BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
+
+"不同系统使用不同的配置
+if has("mac") || has("macunix") || has("unix") || has("Linux")
+    autocmd! bufwritepost .vimrc source %     "vimrc文件修改之后自动加载 linux。
+elseif has("win32") || has("win64")
+    autocmd! bufwritepost _vimrc source %     "vimrc文件修改之后自动加载 windows。
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -192,7 +202,7 @@ colorscheme solarized
 """" >>>>>>> Airline 设置
 """""""""""""""Plugin 'dikiaap/minimalist'"""""""""""""""""""""""""""""
 
-let g:airline_theme="solarized"		                        "airline 主题设置
+let g:airline_theme="solarized"		                            "airline 主题设置
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1                               "airline 显示powerline字体补丁
 
@@ -213,9 +223,17 @@ let g:airline#extensions#tagbar#enabled = 1                     "airline tagbar
 
 let g:airline#extensions#vimagit#enabled = 1                    "airline vimgit
 
+
 let g:airline#extensions#ycm#enabled = 1                        "airline vimgit
 let g:airline#extensions#ycm#error_symbol = 'E:'
 let g:airline#extensions#ycm#warning_symbol = 'W:'
+
+
+let g:airline#extensions#ctrlspace#enabled = 1
+let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
+
+let g:airline_exclude_preview = 1
+
 
 let g:airline#extensions#tabline#buffer_idx_mode = 1    "显示Buffer的列标,快捷键切换bufflist
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -371,7 +389,7 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-"let g:hexoProjectPath="You Blog Path"
+let g:hexoProjectPath="You Blog Path"
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -407,13 +425,44 @@ let g:mkdp_command_for_global = 0
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> 前端  JavaScript  插件
+""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 
 let g:javascript_plugin_jsdoc = 1          "语法高亮
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
+let b:javascript_fold=1
+let javascript_enable_domhtmlcss=1
 set foldmethod=syntax
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> CtrlSpace vim配置 
+""""""""""""""""""""""""""""""""""""""""""""
+let g:CtrlSpaceHeight = 1    "高亮显示插件
+
+if executable("ag")
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
+
+let g:CtrlSpaceSearchTiming = 500
+
+nnoremap <silent><C-p> :CtrlSpace O<CR>
+
+"切换工作空间
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+
+"Color theme
+hi link CtrlSpaceNormal   PMenu
+hi link CtrlSpaceSelected PMenuSel
+hi link CtrlSpaceSearch   Search
+hi link CtrlSpaceStatus   StatusLine
+
+
 
 
 
@@ -421,47 +470,48 @@ set foldmethod=syntax
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" <<<<<<<  插件管理 >>>>>>>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"vim plug
+"
 " 设置包括vundle和初始化相关的runtime path
 if has("mac") || has("macunix") || has("unix") || has("Linux")
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-	Plugin 'valloric/youcompleteme'		"vim 自动补全提示
-	Plugin 'sirver/ultisnips'			    "vim 代码模块片段
-	Plugin 'honza/vim-snippets'			    "~
+    call plug#begin('~/.vim/plugged')
+	Plug 'valloric/youcompleteme'		"vim 自动补全提示
+	Plug 'sirver/ultisnips'			    "vim 代码模块片段
+	Plug 'honza/vim-snippets'			    "~
 
 elseif has("win32") || has("win64")
-    set rtp+=$VIM/vimfiles/bundle/Vundle.Vim/
-    call vundle#begin('$VIM/vimfiles/bundle/')
+    "call vundle#begin('$VIM/vimfiles/bundle/')
+    call plug#begin('$VIM/vimfiles/bundle/')
 endif
 
 
-" 让vundle管理插件版本
-Plugin 'VundleVim/Vundle.vim'			"vim 插件管理
-Plugin 'altercation/vim-colors-solarized' "vim主题
-Plugin 'vim-airline/vim-airline'		"vim 状态栏
-Plugin 'vim-airline/vim-airline-themes' "vim 状态栏主题
-Plugin 'duff/vim-trailing-whitespace'   "vim 空格空行修复
-Plugin 'majutsushi/tagbar'			    "vim tagbar标签显示
-Plugin 'scrooloose/nerdtree'			"vim 文件目录浏览
-Plugin 'terryma/vim-multiple-cursors'	"vim 多光标编辑
-Plugin 'kien/ctrlp.vim'                 "vim 超级搜索功能
-Plugin 'rking/ag.vim'				    "vim ag搜索查询定位
-Plugin 'sjl/gundo.vim'                  "vim 撤销操作显示
-Plugin 'tpope/vim-fugitive'			    "vim git插件
-Plugin 'yggdroot/indentline'            "vim 缩进指示线条
-Plugin 'tmhedberg/SimpylFold'           "vim 代码折叠
-Plugin 'jiangmiao/auto-pairs'           "vim 自动补全符号
-Plugin 'thinca/vim-quickrun'            "vim 代码执行插件
-Plugin 'ryanoasis/vim-devicons'         "vim icon
-Plugin 'hiphopcoders/hexo.vim'
-Plugin 'godlygeek/tabular'              "vim markdown
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/mathjax-support-for-mkdp'  "vim 实时预览
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'pangloss/vim-javascript'        "vim javascript
-Plugin 'marijnh/tern_for_vim'           "vim javascript plugin
+"" 让vimplug管理插件版本
+Plug 'VundleVim/Vundle.vim'			    "vim 插件管理
+Plug 'altercation/vim-colors-solarized' "vim主题
+Plug 'vim-airline/vim-airline'		    "vim 状态栏
+Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
+Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
+Plug 'majutsushi/tagbar'			    "vim tagbar标签显示
+Plug 'scrooloose/nerdtree'			    "vim 文件目录浏览
+Plug 'terryma/vim-multiple-cursors'	    "vim 多光标编辑
+Plug 'kien/ctrlp.vim'                   "vim 超级搜索功能
+Plug 'szw/vim-ctrlspace'                "vim CtrlpSpace
+Plug 'rking/ag.vim'				        "vim ag搜索查询定位
+Plug 'sjl/gundo.vim'                    "vim 撤销操作显示
+Plug 'tpope/vim-fugitive'			    "vim git插件
+Plug 'yggdroot/indentline'              "vim 缩进指示线条
+Plug 'tmhedberg/SimpylFold'             "vim 代码折叠
+Plug 'jiangmiao/auto-pairs'             "vim 自动补全符号
+Plug 'thinca/vim-quickrun'              "vim 代码执行插件
+Plug 'ryanoasis/vim-devicons'           "vim icon
+Plug 'hiphopcoders/hexo.vim'
+Plug 'godlygeek/tabular'                "vim markdown
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/mathjax-support-for-mkdp'  "vim 实时预览
+Plug 'iamcco/markdown-preview.vim'
+Plug 'pangloss/vim-javascript'          "vim javascript
+Plug 'marijnh/tern_for_vim'             "vim javascript plugin
 
-call vundle#end()
-filetype plugin indent on    "必须加载vim自带和插件相应的语法和文件类型相关脚本
-
+call plug#end()
 
