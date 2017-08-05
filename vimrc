@@ -221,7 +221,7 @@ let g:airline#extensions#tabline#show_buffers = 0               "airline bufers 
 
 let g:airline#extensions#tabline#show_close_button = 1
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 0
-let g:airline#extensions#tabline#tabs_label = 'TABS'
+let g:airline#extensions#tabline#tabs_label = 'Tabs'
 "let g:airline#extensions#tabline#buffers_label = 'B'
 
 let g:airline#extensions#whitespace#enabled = 0                 "airline whitespace check 显示
@@ -243,20 +243,6 @@ let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 let g:airline_exclude_preview = 1
 
 let g:airline#extensions#ale#enabled = 1
-
-let g:airline#extensions#tabline#buffer_idx_mode = 1    "显示Buffer的列标,快捷键切换bufflist
-    nmap <leader>1 <Plug>AirlineSelectTab1
-    nmap <leader>2 <Plug>AirlineSelectTab2
-    nmap <leader>3 <Plug>AirlineSelectTab3
-    nmap <leader>4 <Plug>AirlineSelectTab4
-    nmap <leader>5 <Plug>AirlineSelectTab5
-    nmap <leader>6 <Plug>AirlineSelectTab6
-    nmap <leader>7 <Plug>AirlineSelectTab7
-    nmap <leader>8 <Plug>AirlineSelectTab8
-    nmap <leader>9 <Plug>AirlineSelectTab9
-    nmap <leader>- <Plug>AirlineSelectPrevTab
-    nmap <leader>+ <Plug>AirlineSelectNextTab
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -395,7 +381,7 @@ let g:hexoProjectPath="You Blog Path"
 " 设置 chrome 浏览器的路径（或是启动 chrome（或其他现代浏览器）的命令）
 if has("mac") || has("macunix")
     let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
-elseif
+else
     let g:mkdp_path_to_chrome = "google-chrome"
 endif
 
@@ -523,7 +509,10 @@ elseif has("win32") || has("win64")
     Plug 'hiphopcoders/hexo.vim'
     Plug 'godlygeek/tabular'                "vim markdown
     Plug 'plasticboy/vim-markdown'
+    Plug 'iamcco/mathjax-support-for-mkdp'  "vim 实时预览
+    Plug 'iamcco/markdown-preview.vim'
     Plug 'pangloss/vim-javascript'          "vim javascript
+    Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
 
 call plug#end()
