@@ -369,8 +369,7 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-"let g:hexoProjectPath="You Blog Path"
-let g:hexoProjectPath="/Users/macsq/GitWork/My_Blog"
+let g:hexoProjectPath="You Blog Path"
 
 
 
