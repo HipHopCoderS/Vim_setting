@@ -88,7 +88,7 @@ nnoremap <C-H> <C-W><C-H>
 
 filetype off                    "关闭文件类型检测
 filetype indent on              "根据文件自动缩进
-filetype plugin on               "允许插件
+filetype plugin on              "允许插件
 filetype plugin indent on       "启动自动补全 ycm需要设置
 
 
@@ -195,7 +195,6 @@ colorscheme solarized
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
 if has("mac") || has("macunix") || has("unix") || has("Linux")
 
     nnoremap <F2> :GundoToggle<CR>                  "Gundo 撤销操作
@@ -205,6 +204,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     nnoremap <F10> :Ag <CR>                         "Ag 搜索
 
 endif
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -369,7 +369,9 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-let g:hexoProjectPath="You Blog Path"
+"let g:hexoProjectPath="You Blog Path"
+let g:hexoProjectPath="/Users/macsq/GitWork/My_Blog"
+
 
 
 
