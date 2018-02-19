@@ -94,6 +94,7 @@ filetype plugin indent on       "启动自动补全 ycm需要设置
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
+
     if has("mac") || has("macunix")
         set ambiwidth=double                            "设置中文显示>双字节的宽度
         let g:airline_right_sep = '⮂'                               "Gui 设置显示的箭头符号
@@ -154,7 +155,7 @@ let g:rehash256 = 1                                                             
 
 
 if has("mac") || has("macunix")
-    set guifont=LiterationMonoPowerline\ NF:h13
+    set guifont=SauceCoderPro\ Nerd\ Font:h13
 elseif has("win32") || has("win64")
     set guifont=LiterationMonoPowerline\ NF:h13
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
@@ -165,7 +166,7 @@ elseif has("gui_gtk2")
 elseif has("linux")
     set guifont= Literation\ Mono\ for\ Powerline\ 13
 elseif has("macunix")
-    set guifont=Literation\ Mono\ for\ Powerline:h13
+    set guifont=SauceCoderPro\ Nerd\ Font:h13
 endif
 
 
@@ -361,7 +362,7 @@ let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips' "设定代�
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> QuickRun 执行脚本插件
 """"""""""""""""""""""""""""""""""""""""""""
-inoremap <F5> <Esc>:QuickRun<CR>
+"inoremap <F5> <Esc>:QuickRun<CR>
 
 
 
@@ -369,7 +370,8 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-let g:hexoProjectPath="You Blog Path"
+"let g:hexoProjectPath="You Blog Path"
+let g:hexoProjectPath="/Users/macsq/GitWork/My_Blog"
 
 
 
