@@ -157,7 +157,7 @@ let g:rehash256 = 1                                                             
 if has("mac") || has("macunix")
     set guifont=SauceCoderPro\ Nerd\ Font:h13
 elseif has("win32") || has("win64")
-    set guifont=LiterationMonoPowerline\ NF:h13
+    set guifont=SauceCodePro\ Nerd\ Font\ Mono:h13
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
