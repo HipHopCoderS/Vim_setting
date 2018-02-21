@@ -162,9 +162,9 @@ elseif has("win32") || has("win64")
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=Literation\ Mono\ for\ Powerline\ 13
+    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
 elseif has("linux")
-    set guifont= Literation\ Mono\ for\ Powerline\ 13
+    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
 elseif has("macunix")
     set guifont=SauceCoderPro\ Nerd\ Font:h13
 endif
