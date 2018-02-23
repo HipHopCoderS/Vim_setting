@@ -66,7 +66,7 @@ set fileformats=unix,dos,mac    "使用unix 作为标准的文件类型"
 set autoindent
 set autoread                    "文件外部修改后vim自动载入
 set autowrite                   "自动保存
-"set autochdir                   "打开文件自动切换到目录下  nerdtree
+set autochdir                   "打开文件自动切换到目录下  nerdtree
 
 set splitbelow                  "允许分屏 vs,sp
 set splitright
@@ -183,7 +183,7 @@ syntax on                       "开启语法高亮
 "let g:solarized_termcolors=256  "终端显示不支持256 色彩值设置
 let g:solarized_termtrans=0
 let g:solarized_degrade =  0
-set background=dark             "vim主题
+"set background=dark             "vim主题
 colorscheme solarized
 
 
@@ -212,7 +212,7 @@ endif
 """""""""""""""Plugin 'dikiaap/minimalist'"""""""""""""""""""""""""""""
 
 let g:airline_theme="solarized"		                            "airline 主题设置
-let g:airline_solarized_bg='dark'
+"let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1                               "airline 显示powerline字体补丁
 
 let g:airline#extensions#tabline#enabled = 1                    "airline tabline 显示配置
@@ -224,7 +224,7 @@ let g:airline#extensions#tabline#switch_buffers_and_tabs = 0
 let g:airline#extensions#tabline#tabs_label = 'Tabs'
 "let g:airline#extensions#tabline#buffers_label = 'B'
 
-let g:airline#extensions#whitespace#enabled = 0                 "airline whitespace check 显示
+"let g:airline#extensions#whitespace#enabled = 0                 "airline whitespace check 显示
 
 let g:airline#extensions#quickfix#quickfix_text = 'Quickfix'    "airline  quickfix  显示
 let g:airline#extensions#quickfix#location_text = 'Location'
@@ -404,7 +404,6 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> CtrlSpace vim配置
 """"""""""""""""""""""""""""""""""""""""""""
@@ -450,12 +449,9 @@ hi link CtrlSpaceStatus   StatusLine
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
-
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-
 
 
 
@@ -479,6 +475,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
     Plug 'majutsushi/tagbar'			    "vim tagbar标签显示
     Plug 'scrooloose/nerdtree'			    "vim 文件目录浏览
+    Plug 'Xuyuanp/nerdtree-git-plugin'      "vim git tree
     Plug 'terryma/vim-multiple-cursors'	    "vim 多光标编辑
     Plug 'kien/ctrlp.vim'                   "vim 超级搜索功能
     Plug 'szw/vim-ctrlspace'                "vim CtrlpSpace
