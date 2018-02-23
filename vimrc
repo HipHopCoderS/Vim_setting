@@ -66,7 +66,7 @@ set fileformats=unix,dos,mac    "使用unix 作为标准的文件类型"
 set autoindent
 set autoread                    "文件外部修改后vim自动载入
 set autowrite                   "自动保存
-set autochdir                   "打开文件自动切换到目录下  nerdtree
+"set autochdir                   "打开文件自动切换到目录下  nerdtree
 
 set splitbelow                  "允许分屏 vs,sp
 set splitright
@@ -94,11 +94,10 @@ filetype plugin indent on       "启动自动补全 ycm需要设置
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
-
     if has("mac") || has("macunix")
         set ambiwidth=double                            "设置中文显示>双字节的宽度
-        let g:airline_right_sep = '⮂'                               "Gui 设置显示的箭头符号
-        let g:airline_right_alt_sep = '⮃'
+        let g:airline_right_sep = ''
+        let g:airline_right_alt_sep = ''
     endif
 
     set guioptions-=m
@@ -155,18 +154,18 @@ let g:rehash256 = 1                                                             
 
 
 if has("mac") || has("macunix")
-    set guifont=SauceCoderPro\ Nerd\ Font:h13
+    set guifont=LiterationMonoPowerline\ NF:h13
 elseif has("win32") || has("win64")
-    set guifont=SauceCodePro\ Nerd\ Font\ Mono:h13
+    set guifont=LiterationMonoPowerline\ NF:h13
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
+    set guifont=Literation\ Mono\ for\ Powerline\ 13
 elseif has("linux")
-    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
+    set guifont= Literation\ Mono\ for\ Powerline\ 13
 elseif has("macunix")
-    set guifont=SauceCoderPro\ Nerd\ Font:h13
+    set guifont=Literation\ Mono\ for\ Powerline:h13
 endif
 
 
@@ -244,6 +243,7 @@ let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 let g:airline_exclude_preview = 1
 
 let g:airline#extensions#ale#enabled = 1
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -362,7 +362,7 @@ let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips' "设定代�
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> QuickRun 执行脚本插件
 """"""""""""""""""""""""""""""""""""""""""""
-"inoremap <F5> <Esc>:QuickRun<CR>
+inoremap <F5> <Esc>:QuickRun<CR>
 
 
 
@@ -370,8 +370,7 @@ let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips' "设定代�
 """" >>>>>>> Hexo vim 插件
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
-"let g:hexoProjectPath="You Blog Path"
-let g:hexoProjectPath="/Users/macsq/GitWork/My_Blog"
+let g:hexoProjectPath="You Blog Path"
 
 
 
@@ -469,8 +468,10 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " 设置包括vundle和初始化相关的runtime path
 if has("mac") || has("macunix") || has("unix") || has("Linux")
     call plug#begin('~/.vim/plugged')
-	Plug 'valloric/youcompleteme'		"vim 自动补全提示
-	Plug 'sirver/ultisnips'			    "vim 代码模块片段
+    Plug 'shougo/vimshell.vim'              "vim shell
+    Plug 'Shougo/vimproc.vim',{'do':'make'} "vim shell depends vimproc
+	Plug 'valloric/youcompleteme'           "vim 自动补全提示
+	Plug 'sirver/ultisnips'                 "vim 代码模块片段
 	Plug 'honza/vim-snippets'			    "~
     Plug 'altercation/vim-colors-solarized' "vim主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
