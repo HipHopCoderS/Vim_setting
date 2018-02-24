@@ -45,15 +45,15 @@ set mouse=a                     "允许所有模式鼠标
 set clipboard=unnamed           "允许访问系统剪切板
 set backspace=2		            "允许退格键使用
 set scrolloff=7                 "滚动的时候 上下的间距为7
-set pastetoggle=<F8>
+set pastetoggle=<F8>            "F8 开启粘贴模式
 
 set laststatus=2                "总是显示状态栏
 set showcmd                     "显示未完成的命令
 set showmode                    "显示当前的模式
 set ruler                       "显示右下角显示光标位置
 set nu                          "显示行号
-set cursorline                  "高亮显示当前行/列
-"set cursorcolumn
+set cursorline                  "高亮显示当前行
+"set cursorcolumn               "高亮显示当前列
 
 set expandtab                   "设置缩进,空格代替Tab
 set tabstop=4
@@ -152,22 +152,20 @@ let &termencoding=&encoding                                                     
 let g:rehash256 = 1                                                                     "设置vim的背景接近终端
 
 
-
 if has("mac") || has("macunix")
-    set guifont=LiterationMonoPowerline\ NF:h13
+    set guifont=SauceCoderPro\ Nerd\ Font:h13
 elseif has("win32") || has("win64")
-    set guifont=LiterationMonoPowerline\ NF:h13
+    set guifont=SauceCodePro\ Nerd\ Font\ Mono:h13
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
 elseif has("gui_gtk2")
-    set guifont=Literation\ Mono\ for\ Powerline\ 13
+    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
 elseif has("linux")
-    set guifont= Literation\ Mono\ for\ Powerline\ 13
+    set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
 elseif has("macunix")
-    set guifont=Literation\ Mono\ for\ Powerline:h13
+    set guifont=SauceCoderPro\ Nerd\ Font:h13
 endif
-
 
 
 
