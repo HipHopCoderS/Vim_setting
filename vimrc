@@ -80,10 +80,10 @@ set tm=500
 
 
 "使用vim方向键来切换编辑窗口 Ctrl+H/J/K/L
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <J> <C-W><C-J>
+nnoremap <K> <C-W><C-K>
+nnoremap <L> <C-W><C-L>
+nnoremap <H> <C-W><C-H>
 
 
 filetype off                    "关闭文件类型检测
@@ -100,6 +100,8 @@ if has("gui_running")
         let g:airline_right_alt_sep = ''
     endif
 
+    hi VertSplit   guifg=none guibg=none
+    set background=dark                     "vim 背景黑色
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
@@ -153,9 +155,11 @@ let g:rehash256 = 1                                                             
 
 
 if has("mac") || has("macunix")
-    set guifont=SauceCoderPro\ Nerd\ Font:h13
+    set guifont=SauceCodePro\ Nerd\ Font:h13
+elseif has("gui_macvim")
+    set guifont=SauceCodePro\ Nerd\ Font:h13
 elseif has("win32") || has("win64")
-    set guifont=SauceCodePro\ Nerd\ Font\ Mono:h13
+    set guifont=SauceCodePo\ Nerd\ Font\ Mono:h13
     source $VIMRUNTIME/delmenu.vim                          "gvim 菜单中文乱码问题
     source $VIMRUNTIME/menu.vim
     language messages zh_CN.utf-8                           "gvim 提示信息中文乱码问题
@@ -163,8 +167,8 @@ elseif has("gui_gtk2")
     set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
 elseif has("linux")
     set guifont=SauceCodePro\ Nerd\ Mono\ Regular\ 13
-elseif has("macunix")
-    set guifont=SauceCoderPro\ Nerd\ Font:h13
+elseif has("unix")
+    set guifont=SauceCodePro\ Nerd\ Font:h13
 endif
 
 
@@ -184,6 +188,11 @@ let g:solarized_degrade =  0
 "set background=dark             "vim主题
 colorscheme solarized
 
+" 背景透明 分割线设置
+hi Normal  ctermfg=252 ctermbg=none
+hi VertSplit  ctermfg=007 ctermbg=none
+"set fillchars=vert:!
+
 
 
 
@@ -194,20 +203,18 @@ colorscheme solarized
 
 
 if has("mac") || has("macunix") || has("unix") || has("Linux")
-
     nnoremap <F2> :GundoToggle<CR>                  "Gundo 撤销操作
     noremap <F5> :QuickRun<CR>                      "QuickRun 执行程序
     nnoremap <F7> :TagbarToggle<CR>                 "Tagbar  打开/关闭标签浏览
     let g:multi_cursor_start_key='<F9>'			    "多光标编辑
     nnoremap <F10> :Ag <CR>                         "Ag 搜索
-
 endif
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
-"""""""""""""""Plugin 'dikiaap/minimalist'"""""""""""""""""""""""""""""
+"""""""""""""""'"""""""""""""""""""""""""""""
 
 let g:airline_theme="solarized"		                            "airline 主题设置
 "let g:airline_solarized_bg='dark'
@@ -241,6 +248,8 @@ let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 let g:airline_exclude_preview = 1
 
 let g:airline#extensions#ale#enabled = 1
+
+let g:airline#extensions#tmuxline#enabled = 1
 
 
 
@@ -441,6 +450,7 @@ hi link CtrlSpaceStatus   StatusLine
 "| `B`   | Jump to `B`ookmark List with Search Mode                |
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ale  代码提示配置
 """"""""""""""""""""""""""""""""""""""""""""
@@ -450,6 +460,22 @@ let g:ale_sign_warning = '--'
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> 'benmills/vimux'
+""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>rp :VimuxPromptCommand<cr>
+nmap <leader>rl :VimuxRunLastCommand<cr>
+nmap <leader>rq :VimuxCloseRunner<cr>
+nmap <leader>rx :VimuxInterruptRunner<cr>
+
+
+
+
+
+
 
 
 
@@ -492,6 +518,9 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'iamcco/markdown-preview.vim'
     Plug 'pangloss/vim-javascript'          "vim javascript
     Plug 'w0rp/ale'                         "vim ale 语法检查
+    Plug 'christoomey/vim-tmux-navigator'   "vim tmux 导航
+    Plug 'edkolev/tmuxline.vim'             "vim statusline
+    Plug 'benmills/vimux'                   "vim tmmux
 elseif has("win32") || has("win64")
     call plug#begin('$VIM/vimfiles/plugged')
     Plug 'altercation/vim-colors-solarized' "vim主题
@@ -515,5 +544,7 @@ elseif has("win32") || has("win64")
 endif
 
 call plug#end()
+
+
 
 
