@@ -94,18 +94,18 @@ filetype plugin indent on       "启动自动补全 ycm需要设置
 
 "当Gui启动的时候取消界面多余显示 F11 控制开关
 if has("gui_running")
-    if has("mac") || has("macunix")
-        set ambiwidth=double                            "设置中文显示>双字节的宽度
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-    endif
+    "if has("mac") || has("macunix")
+    "    set ambiwidth=double                            "设置中文显示>双字节的宽度
+    "    let g:airline_right_sep = ''
+    "    let g:airline_right_alt_sep = ''
+    "endif
 
-    hi VertSplit   guifg=none guibg=none
     set background=dark                     "vim 背景黑色
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
     set guioptions-=L
+    hi VertSplit   guifg=none guibg=none
     nmap <silent> <c-F11> :if &guioptions =~# 'm' <Bar>
         \set guioptions-=m <Bar>
         \set guioptions-=T <Bar>
