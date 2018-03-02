@@ -190,6 +190,7 @@ colorscheme solarized
 
 " 背景透明 分割线设置
 hi Normal  ctermfg=252 ctermbg=none
+hi LineNr     ctermbg=NONE guibg=NONE
 hi VertSplit  ctermfg=007 ctermbg=none
 "set fillchars=vert:!
 
@@ -543,7 +544,6 @@ elseif has("win32") || has("win64")
     Plug 'pangloss/vim-javascript'          "vim javascript
     Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
-
 call plug#end()
 
 
