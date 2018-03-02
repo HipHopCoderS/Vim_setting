@@ -518,6 +518,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'iamcco/markdown-preview.vim'
     Plug 'pangloss/vim-javascript'          "vim javascript
     Plug 'w0rp/ale'                         "vim ale 语法检查
+    Plug 'gregsexton/gitv'                  "vim git log
     Plug 'christoomey/vim-tmux-navigator'   "vim tmux 导航
     Plug 'edkolev/tmuxline.vim'             "vim statusline
     Plug 'benmills/vimux'                   "vim tmmux
