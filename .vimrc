@@ -3,7 +3,6 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
-"
 "<F1>
 "<F2>       "撤销操作
 "<F3>       "关闭所有的折叠
@@ -18,7 +17,6 @@
 "<F12>
 "
 "<space>    "折叠代码
-
 "<Ctrl +  F11>      "Gui隐藏UI开关
 "
 """""" <<<<<<< 基础设置  >>>>>>>
@@ -99,13 +97,15 @@ if has("gui_running")
     "    let g:airline_right_sep = ''
     "    let g:airline_right_alt_sep = ''
     "endif
-
-    set background=dark                     "vim 背景黑色
+    set background=dark
     set guioptions-=m
     set guioptions-=T
     set guioptions-=r
     set guioptions-=L
-    hi VertSplit   guifg=none guibg=none
+    "hi VertSplit   guifg=none guibg=none
+    hi  VertSplit gui=attribute guibg=None guifg=007
+
+
     nmap <silent> <c-F11> :if &guioptions =~# 'm' <Bar>
         \set guioptions-=m <Bar>
         \set guioptions-=T <Bar>
@@ -179,18 +179,29 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""
 let python_highlight_all=1
 
+let g:onedark_termcolors=256
+colorscheme  onedark
 
 syntax enable                   "允许自定义语法
 syntax on                       "开启语法高亮
-"let g:solarized_termcolors=256  "终端显示不支持256 色彩值设置
-let g:solarized_termtrans=0
-let g:solarized_degrade =  0
-"set background=dark             "vim主题
-colorscheme solarized
+
+set termguicolors
+
+
+"if (empty($TMUX))
+"  if (has("nvim"))
+"    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"  endif
+"  if (has("termguicolors"))
+"    set termguicolors
+"  endif
+"endif
+
+
 
 " 背景透明 分割线设置
 hi Normal  ctermfg=252 ctermbg=none
-hi LineNr     ctermbg=NONE guibg=NONE
+hi LineNr  ctermbg=NONE guibg=NONE
 hi VertSplit  ctermfg=007 ctermbg=none
 "set fillchars=vert:!
 
@@ -205,10 +216,20 @@ hi VertSplit  ctermfg=007 ctermbg=none
 
 if has("mac") || has("macunix") || has("unix") || has("Linux")
     nnoremap <F2> :GundoToggle<CR>                  "Gundo 撤销操作
-    noremap <F5> :QuickRun<CR>                      "QuickRun 执行程序
+    "nnoremap <F5> :QuickRun<CR>                     "QuickRun 执行程序
     nnoremap <F7> :TagbarToggle<CR>                 "Tagbar  打开/关闭标签浏览
     let g:multi_cursor_start_key='<F9>'			    "多光标编辑
     nnoremap <F10> :Ag <CR>                         "Ag 搜索
+
+    let g:quickrun_config = {
+    \   "_" : {
+    \       "outputter" : "message",
+    \   },
+    \}
+
+    let g:quickrun_no_default_key_mappings = 1
+    nmap <Leader>r <Plug>(quickrun)
+    map <F5> :QuickRun<CR>
 endif
 
 
@@ -216,9 +237,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
 """""""""""""""'"""""""""""""""""""""""""""""
-
-let g:airline_theme="solarized"		                            "airline 主题设置
-"let g:airline_solarized_bg='dark'
+let g:airline_theme="onedark"                                   "airline 主题设置
 let g:airline_powerline_fonts = 1                               "airline 显示powerline字体补丁
 
 let g:airline#extensions#tabline#enabled = 1                    "airline tabline 显示配置
@@ -248,10 +267,13 @@ let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
 
 let g:airline_exclude_preview = 1
 
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 
-let g:airline#extensions#tmuxline#enabled = 1
-let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
+let g:airline#extensions#tmuxline#enabled = 0
+"let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
+
+let g:tmuxline_theme = 'powerline'
+
 
 
 
@@ -368,11 +390,6 @@ let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件�
 let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
 
-""""""""""""""""""""""""""""""""""""""""""""
-"""" >>>>>>> QuickRun 执行脚本插件
-""""""""""""""""""""""""""""""""""""""""""""
-inoremap <F5> <Esc>:QuickRun<CR>
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -380,7 +397,6 @@ inoremap <F5> <Esc>:QuickRun<CR>
 """"""""""""""""""""""""""""""""""""""""""""
 "输入你的本地blog文件夹地址
 let g:hexoProjectPath="You Blog Path"
-
 
 
 
@@ -398,10 +414,10 @@ endif
 
 
 " 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开 markdown 文件的时候打开一次
-let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 0
 
 " 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预览窗口
-let g:mkdp_auto_open = 1
+let g:mkdp_auto_open = 0
 
 " 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不自动关闭预览窗口
 let g:mkdp_auto_close = 1
@@ -424,12 +440,15 @@ endif
 
 let g:CtrlSpaceSearchTiming = 500
 
+
 nnoremap <silent><C-p> :CtrlSpace O<CR>
+
 
 "切换工作空间
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
+
 
 "Color theme
 hi link CtrlSpaceNormal   PMenu
@@ -437,32 +456,40 @@ hi link CtrlSpaceSelected PMenuSel
 hi link CtrlSpaceSearch   Search
 hi link CtrlSpaceStatus   StatusLine
 
+
 "Crrlspace 按键说明
 "| Key | Action                                                |
 "| --- | ----------------------------------------------------- |
-"| `h`   | Toggle Buffer List (aka `H`ome List)                    |
-"| `H`   | Jump to Buffer List (aka `H`ome List) with Search Mode  |
-"| `o`   | Toggle File List (aka `O`pen List)                      |
-"| `O`   | Jump to File List (aka `O`pen List) with Search Mode    |
-"| `l`   | Toggle Tab List (aka `L`ists List)                      |
-"| `L`   | Jump to Tab List (aka `L`ists List) with Search Mode    |
-"| `w`   | Toggle `W`orkspace List                                 |
-"| `W`   | Jump to `W`orkspace List with Search Mode               |
-"| `b`   | Toggle `B`ookmark List                                  |
-"| `B`   | Jump to `B`ookmark List with Search Mode                |
+"| `h` | Toggle Buffer List (aka `H`ome List)                  |
+"| `H` | Jump to Buffer List (aka `H`ome List) with Search Mode|
+"| `o` | Toggle File List (aka `O`pen List)                    |
+"| `O` | Jump to File List (aka `O`pen List) with Search Mode  |
+"| `l` | Toggle Tab List (aka `L`ists List)                    |
+"| `L` | Jump to Tab List (aka `L`ists List) with Search Mode  |
+"| `w` | Toggle `W`orkspace List                               |
+"| `W` | Jump to `W`orkspace List with Search Mode             |
+"| `b` | Toggle `B`ookmark List                                |
+"| `B` | Jump to `B`ookmark List with Search Mode              |
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ale  代码提示配置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-
+"let g:ale_sign_column_always = 1                            "显示侧边栏
+let g:ale_set_highlights = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
+"let g:ale_statusline_format = ['✗ %d', ' %d', '✔ OK']
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_warning_str = 'Warning'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
+let g:ale_lint_on_text_changed = 'never'                    "编辑文件时不进行语法检查,保存时才检查
+let g:ale_lint_on_enter = 0                                 "打开文件时不进行检查
+let g:ale_lint_on_save = 1                                  "保存时进行语法检查
+highlight clear ALEErrorSign
+"highlight clear ALEWarningSign
+highlight clear SignColumn
 
 
 """"""""""""""""""""""""""""""""""""""""""""
@@ -472,11 +499,6 @@ nmap <leader>rp :VimuxPromptCommand<cr>
 nmap <leader>rl :VimuxRunLastCommand<cr>
 nmap <leader>rq :VimuxCloseRunner<cr>
 nmap <leader>rx :VimuxInterruptRunner<cr>
-
-
-
-
-
 
 
 
@@ -495,7 +517,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
 	Plug 'valloric/youcompleteme'           "vim 自动补全提示
 	Plug 'sirver/ultisnips'                 "vim 代码模块片段
 	Plug 'honza/vim-snippets'			    "~
-    Plug 'altercation/vim-colors-solarized' "vim主题
+    Plug 'joshdick/onedark.vim'             "vim主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
     Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
@@ -526,7 +548,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'benmills/vimux'                   "vim tmmux
 elseif has("win32") || has("win64")
     call plug#begin('$VIM/vimfiles/plugged')
-    Plug 'altercation/vim-colors-solarized' "vim主题
+    Plug 'joshdick/onedark.vim'             "vim主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
     Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
@@ -546,7 +568,5 @@ elseif has("win32") || has("win64")
     Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
 call plug#end()
-
-
 
 
