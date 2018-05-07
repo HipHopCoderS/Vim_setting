@@ -270,9 +270,8 @@ let g:airline_exclude_preview = 1
 let g:airline#extensions#ale#enabled = 0
 
 let g:airline#extensions#tmuxline#enabled = 0
-"let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.conf"
-
-let g:tmuxline_theme = 'powerline'
+"let airline#extensions#tmuxline#snapshot_file = "~/.tmux-status.color"
+"let g:tmuxline_theme = 'powerline'
 
 
 
