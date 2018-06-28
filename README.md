@@ -1,5 +1,5 @@
 ## Vim 配置文件，适配windows,OSX,Linux
->Font: SauceCodePro Nerd Font   size:13 
+Font: SauceCodePro Nerd Font   size:13 
 Theme: onedark 
 
 
@@ -54,7 +54,7 @@ call plug#end()
 ```  
 
 ## Issue
-> - 如果主题颜色没有显示
+- 如果主题颜色没有显示
     把 `set termguicolors` 注释掉
 - youcomplete 提示代码插件记得安装完成后进行编译,并且修改python的路径
 
