@@ -1,12 +1,11 @@
 ## Vim 配置文件，适配windows,OSX,Linux
-> Font: SauceCodePro Nerd Font   size:13 
+>Font: SauceCodePro Nerd Font   size:13 
 Theme: onedark 
 
 
 前提：已经安装vim
 
 ## SETP
-> 
 1. 首先执行`setup1.sh` 脚本安装 vim plug, 显示安装完成后打开vim
 2. 打开vim ，执行  `:PlugInstall`  进行插件的安装
 3. 安装主题, 执行 `setup2.sh`
@@ -14,8 +13,8 @@ Theme: onedark
 
 
 ## User plug
-> 
-```` vim
+
+``` vim
 call plug#begin('~/.vim/plugged')
     Plug 'shougo/vimshell.vim'              "vim shell
     Plug 'Shougo/vimproc.vim',{'do':'make'} "vim shell depends vimproc
