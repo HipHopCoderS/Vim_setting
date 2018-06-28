@@ -1,18 +1,20 @@
-# Vim 配置文件，适配windows,OSX,Linux
-Font: SauceCodePro Nerd Font   size:13
-Theme: onedark
+## Vim 配置文件，适配windows,OSX,Linux
+> Font: SauceCodePro Nerd Font   size:13 
+Theme: onedark 
 
 
 前提：已经安装vim
 
-# SETP
+## SETP
+> 
 1. 首先执行`setup1.sh` 脚本安装 vim plug, 显示安装完成后打开vim
 2. 打开vim ，执行  `:PlugInstall`  进行插件的安装
 3. 安装主题, 执行 `setup2.sh`
 4. 安装字体文件即可  `SauceCodePro Nerd Font`
 
 
-# User plug
+## User plug
+> 
 ```` vim
 call plug#begin('~/.vim/plugged')
     Plug 'shougo/vimshell.vim'              "vim shell
@@ -50,11 +52,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'edkolev/tmuxline.vim'             "vim statusline
     Plug 'benmills/vimux'                   "vim tmmux
 call plug#end()
-```
+```  
 
-
-# Issue
-- 如果主题颜色没有显示
+## Issue
+> - 如果主题颜色没有显示
     把 `set termguicolors` 注释掉
 - youcomplete 提示代码插件记得安装完成后进行编译,并且修改python的路径
 
