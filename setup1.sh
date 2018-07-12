@@ -1,4 +1,6 @@
 #!bin/sh
+
+# 安装vim扩展插件
 plug_dir=~/.vim/autoload/plug.vim
 if [[ ! -f $plug_dir ]];then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

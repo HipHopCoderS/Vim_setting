@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# 安装vim主题
 theme_dir=~/.vim/plugged/onedark.vim
 if [[ ! -d $theme_dir ]];then
     echo "Theme onedark not install "
