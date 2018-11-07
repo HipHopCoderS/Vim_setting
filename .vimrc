@@ -64,7 +64,7 @@ set fileformats=unix,dos,mac    "使用unix 作为标准的文件类型"
 set autoindent
 set autoread                    "文件外部修改后vim自动载入
 set autowrite                   "自动保存
-set autochdir                   "打开文件自动切换到目录下  nerdtree
+set autochdir                   "打开文件自动切换到目录下nerdtree
 
 set splitbelow                  "允许分屏 vs,sp
 set splitright
@@ -295,6 +295,21 @@ nnoremap <F6> :NERDTreeToggle<CR>                      "打开/关闭目录浏�
 
 
 """"""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+
+
 """" >>>>>>> Multi_cursorM 多光标编辑设置
 """"""""""""""""""""""""""""""""""""""""""""
 let g:multi_cursor_next_key='<C-n>'
@@ -366,7 +381,7 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Ycm  代码自动补全设置
 """"""""""""""""""""""""""""""""""""""""""""
-let g:ycm_python_binary_path = '/usr/local/Cellar/python3/3.6.1/Frameworks/Python.framework/Versions/3.6/bin/python3'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
 let g:ycm_autoclose_preview_window_after_completion=1   "关闭补全窗口的出现
 let g:ycm_min_num_of_chars_for_completion=1             "从第一个字符就开始匹配了
 let g:ycm_collect_identifiers_from_tags_files=0         "开启标签引擎
@@ -385,7 +400,7 @@ let g:UltiSnipsExpandTrigger="<leader><Tab>"    "代码片段设置
 let g:UltiSnipsListSnippets = '<leader><C-Tab>'
 let g:UltiSnipsJumpForwardTrigger="<leader><M-Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><S-Tab>"
-let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsSnippetDirectories=['UltiSnips'] "设置运行环境下的文件夹名字即可 set runtimepath  查看
 let g:UltiSnipsSnippetsDir = '~/.vim/plugged/vim-snippets/UltiSnips' "设定代码片的路径，可以自定义可以第三方的
 
@@ -503,6 +518,29 @@ nmap <leader>rx :VimuxInterruptRunner<cr>
 
 
 
+""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> 'chiel92/vim-autoformat' 代码格式化
+""""""""""""""""""""""""""""""""""""""""""""
+au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 1
+
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"""" >>>>>>> 'thaerkh/vim-workspace' vim工作空间
+""""""""""""""""""""""""""""""""""""""""""""
+" let g:workspace_session_disable_on_args = 1
+" let g:workspace_autosave_always = 1
+" let g:workspace_autosave = 0
+" let g:workspace_autosave_untrailspaces = 0
+
+
+
+
+
+
 "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" <<<<<<<  插件管理 >>>>>>>
@@ -546,6 +584,9 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'christoomey/vim-tmux-navigator'   "vim tmux 导航
     Plug 'edkolev/tmuxline.vim'             "vim statusline
     Plug 'benmills/vimux'                   "vim tmmux
+    Plug 'chiel92/vim-autoformat'           "vim 自动格式化
+    Plug 'thaerkh/vim-workspace'            "vim 工作空间
+    Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
 elseif has("win32") || has("win64")
     call plug#begin('$VIM/vimfiles/plugged')
     Plug 'joshdick/onedark.vim'             "vim主题
@@ -565,7 +606,11 @@ elseif has("win32") || has("win64")
     Plug 'iamcco/mathjax-support-for-mkdp'  "vim 实时预览
     Plug 'iamcco/markdown-preview.vim'
     Plug 'pangloss/vim-javascript'          "vim javascript
-    Plug 'w0rp/ale'                         "vim ale 语法检查
+    Plug 'gregsexton/gitv'                  "vim git log
+    Plug 'chiel92/vim-autoformat'           "vim 自动格式化
+    Plug 'thaerkh/vim-workspace'            "vim 工作空间
+    Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
+e   Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
 call plug#end()
 
