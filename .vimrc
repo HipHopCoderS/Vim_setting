@@ -585,7 +585,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
     Plug 'edkolev/tmuxline.vim'             "vim statusline
     Plug 'benmills/vimux'                   "vim tmmux
     Plug 'chiel92/vim-autoformat'           "vim 自动格式化
-    Plug 'thaerkh/vim-workspace'            "vim 工作空间
+   "Plug 'thaerkh/vim-workspace'            "vim 工作空间
     Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
 elseif has("win32") || has("win64")
     call plug#begin('$VIM/vimfiles/plugged')
@@ -610,7 +610,7 @@ elseif has("win32") || has("win64")
     Plug 'chiel92/vim-autoformat'           "vim 自动格式化
     Plug 'thaerkh/vim-workspace'            "vim 工作空间
     Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
-e   Plug 'w0rp/ale'                         "vim ale 语法检查
+    Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
 call plug#end()
 
