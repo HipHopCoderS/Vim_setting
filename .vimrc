@@ -295,7 +295,7 @@ nnoremap <F6> :NERDTreeToggle<CR>                      "打开/关闭目录浏�
 
 
 """"""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom  = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",

@@ -11,4 +11,4 @@ else
 fi
 cd $PWD
 cp ./.vimrc  ~/.vimrc
-echo "Deploy success, please open vim!"
+echo "Deploy success, please open vim, then run ':PlugInstall'
