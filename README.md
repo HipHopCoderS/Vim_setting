@@ -14,6 +14,7 @@ Theme: onedark or Dracula
 
 
 ## User plug
+```
 if has("mac") || has("macunix") || has("unix") || has("Linux")
     call plug#begin('~/.vim/plugged')
     Plug 'shougo/vimshell.vim'              "vim shell
@@ -55,10 +56,11 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
    "Plug 'thaerkh/vim-workspace'            "vim 工作空间
     Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
 call plug#end()
+```
 
 
 ## Reference
-[Dracula](https://draculatheme.com/vim)
+[Dracula](https://draculatheme.com/vim) </br>
 [Onedark](https://github.com/joshdick/onedark.vim)
 
 ## Tip
