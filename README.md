@@ -1,28 +1,28 @@
 ## Vim 配置文件，适配windows,OSX,Linux
-Font: SauceCodePro Nerd Font   size:13 
+Font: SauceCodePro Nerd Font   size:13
 Theme: onedark or Dracula
 
 
 前提：已经安装vim
 
+
 ## Step
 1. 首先执行`setup1.sh` 脚本安装 vim plug, 显示安装完成后打开vim
 2. 打开vim ，执行  `:PlugInstall`  进行插件的安装
 3. 安装主题, 执行 `setup2.sh`
-4. 安装字体文件即可  `SauceCodePro Nerd Font`
+4. 安装字体文件:  `SauceCodePro Nerd Font`
 
 
 ## User plug
-
-``` vim
-call plug#begin('~/.vim/plugged')
+if has("mac") || has("macunix") || has("unix") || has("Linux")
+    call plug#begin('~/.vim/plugged')
     Plug 'shougo/vimshell.vim'              "vim shell
     Plug 'Shougo/vimproc.vim',{'do':'make'} "vim shell depends vimproc
 	Plug 'valloric/youcompleteme'           "vim 自动补全提示
 	Plug 'sirver/ultisnips'                 "vim 代码模块片段
 	Plug 'honza/vim-snippets'			    "~
     Plug 'joshdick/onedark.vim'             "vim主题
-    Plug 'dracula/dracula-theme' 
+    Plug 'dracula/vim', { 'as': 'dracula' } "dracula主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
     Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
@@ -51,16 +51,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'christoomey/vim-tmux-navigator'   "vim tmux 导航
     Plug 'edkolev/tmuxline.vim'             "vim statusline
     Plug 'benmills/vimux'                   "vim tmmux
+    Plug 'chiel92/vim-autoformat'           "vim 自动格式化
+   "Plug 'thaerkh/vim-workspace'            "vim 工作空间
+    Plug 'mattesgroeger/vim-bookmarks'      "vim 书签增强
 call plug#end()
-```  
+
 
 ## Reference
 [Dracula](https://draculatheme.com/vim)
 [Onedark](https://github.com/joshdick/onedark.vim)
 
-## Tip 
+## Tip
 - 如果主题颜色没有显示
     把 `set termguicolors` 注释掉
 - youcomplete 提示代码插件记得安装完成后进行编译,并且修改python的路径
-- 更换主题修改 `.vimrc` 
+- 更换主题修改 `.vimrc`
 

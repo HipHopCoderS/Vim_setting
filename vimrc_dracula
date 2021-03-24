@@ -102,7 +102,7 @@ if has("gui_running")
     set guioptions-=T
     set guioptions-=r
     set guioptions-=L
-    "hi VertSplit   guifg=none guibg=none
+    hi VertSplit   guifg=none guibg=none
     hi  VertSplit gui=attribute guibg=None guifg=007
 
 
@@ -180,7 +180,6 @@ endif
 let python_highlight_all=1
 
 let g:onedark_termcolors=256
-colorscheme  onedark
 
 syntax enable                   "允许自定义语法
 syntax on                       "开启语法高亮
@@ -237,7 +236,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""
 """" >>>>>>> Airline 设置
 """""""""""""""'"""""""""""""""""""""""""""""
-let g:airline_theme="onedark"                                   "airline 主题设置
+let g:airline_theme="dracula"                                   "airline 主题设置
 let g:airline_powerline_fonts = 1                               "airline 显示powerline字体补丁
 
 let g:airline#extensions#tabline#enabled = 1                    "airline tabline 显示配置
@@ -556,6 +555,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
 	Plug 'sirver/ultisnips'                 "vim 代码模块片段
 	Plug 'honza/vim-snippets'			    "~
     Plug 'joshdick/onedark.vim'             "vim主题
+    Plug 'dracula/vim', { 'as': 'dracula' } "dracula主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
     Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
@@ -590,6 +590,7 @@ if has("mac") || has("macunix") || has("unix") || has("Linux")
 elseif has("win32") || has("win64")
     call plug#begin('$VIM/vimfiles/plugged')
     Plug 'joshdick/onedark.vim'             "vim主题
+    Plug 'dracula/vim', { 'as': 'dracula' } "dracula主题
     Plug 'vim-airline/vim-airline'		    "vim 状态栏
     Plug 'vim-airline/vim-airline-themes'   "vim 状态栏主题
     Plug 'duff/vim-trailing-whitespace'     "vim 空格空行修复
@@ -613,5 +614,5 @@ elseif has("win32") || has("win64")
     Plug 'w0rp/ale'                         "vim ale 语法检查
 endif
 call plug#end()
-
+colorscheme dracula
 
