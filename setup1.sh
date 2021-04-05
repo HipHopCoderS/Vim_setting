@@ -10,5 +10,5 @@ else
     echo "Plug aledy installed!"
 fi
 cd $PWD
-cp ./.vimrc  ~/.vimrc
+cp ./vimrc_dracula  ~/.vimrc
 echo "Deploy success, please open vim, then run ':PlugInstall'"
